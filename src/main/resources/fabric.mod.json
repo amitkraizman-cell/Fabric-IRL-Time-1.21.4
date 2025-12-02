@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "irltime",
+	"version": "${version}",
+	"name": "IRL Time",
+	"description": "Shows your local time in game!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/Fabric-IRL-Time"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/irltime/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"amit.irltime.IRLTime"
+		],
+		"fabric-datagen": [
+			"amit.irltime.IRLTimeDataGenerator"
+		],
+        "client": [
+            "amit.irltime.IRLTimeClient"
+        ]
+	},
+	"mixins": [
+		"irltime.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.1",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
