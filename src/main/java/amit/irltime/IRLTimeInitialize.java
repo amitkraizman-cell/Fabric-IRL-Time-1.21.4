@@ -40,6 +40,7 @@ public class IRLTimeInitialize {
             Collection<StatusEffectInstance> effects = client.player.getStatusEffects();
 
             moveText(effects);
+            if (client.options.hudHidden) return;
             drawContext.drawText(renderer, text, x, y, 0xFFFFFF, true);
         });
     }
