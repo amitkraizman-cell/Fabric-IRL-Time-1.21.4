@@ -23,6 +23,9 @@
 		],
         "client": [
             "amit.irltime.IRLTimeClient"
+        ],
+        "modmenu": [
+            "amit.irltime.IRLTimeModMenuIntegration"
         ]
 	},
 	"mixins": [
