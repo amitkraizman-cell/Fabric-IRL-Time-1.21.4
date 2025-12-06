@@ -20,7 +20,8 @@ public class IRLTimeInitialize {
     static int intHour;
     static String text;
 
-    public static final IRLTimeConfig CONFIG = new IRLTimeConfig();
+    public static IRLTimeConfig CONFIG;
+
 
     private static final DateTimeFormatter TIME_FORMATTER24 =
             DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -38,6 +39,8 @@ public class IRLTimeInitialize {
         IRLTime.LOGGER.info("Registering for " + IRLTime.MOD_ID);
 
         client = MinecraftClient.getInstance();
+
+        CONFIG = ConfigManager.loadConfig();
 
         HudRenderCallback.EVENT.register((DrawContext drawContext, RenderTickCounter tickCounter) -> {
             if (client.options.hudHidden) return;
@@ -113,17 +116,19 @@ public class IRLTimeInitialize {
 
     //returns "AP" or "PM" accordingly
     private static String AMorPM(int hour){
-        if (hour>0 && hour<12) {
-            return "PM";
-        }
+        if (hour<12) {
+            System.out.println(hour);
             return "AM";
+
+        }
+            return "PM";
     }
     //returns an integer in a 12-hour format
-    private static int ConvertTo12Hour(int hour){
-        if (hour > 0 && hour < 12){
-            return hour;
+    private static int ConvertTo12Hour(int hour) {
+        if (hour == 0 || hour == 12) {
+            return 12;
         }
-        return hour-12;
+        return hour % 12;
     }
     //if there's an effect on the player, time moves sideways
     private static void moveText(Collection<StatusEffectInstance> effects) {

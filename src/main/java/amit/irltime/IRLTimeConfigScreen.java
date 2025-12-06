@@ -20,7 +20,8 @@ public class IRLTimeConfigScreen {
                 .setTitle(Text.literal("IRL Time Settings"));
 
         builder.setSavingRunnable(() -> {
-            // TODO: save config later
+            // save config
+            ConfigManager.saveConfig(IRLTimeInitialize.CONFIG);
         });
 
         ConfigCategory general = builder.getOrCreateCategory(Text.literal("General"));
@@ -45,7 +46,7 @@ public class IRLTimeConfigScreen {
         // Show seconds
         general.addEntry(entryBuilder
                 .startBooleanToggle(Text.literal("Show seconds"), cfg.showSeconds)
-                .setDefaultValue(true)
+                .setDefaultValue(false)
                 .setSaveConsumer(newValue -> cfg.showSeconds = newValue)
                 .build()
         );
