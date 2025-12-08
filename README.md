@@ -40,6 +40,8 @@ A lightweight Fabric mod that displays your real-world time directly in the Mine
 
 ● Customizable HUD position
 
+● diverse development to newer minecraft versions as well as 1.21.4
+
 ● Custom color selector
 
 ● More options for customizing in the settings menu
