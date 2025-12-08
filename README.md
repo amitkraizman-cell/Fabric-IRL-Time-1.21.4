@@ -1,6 +1,6 @@
 A lightweight Fabric mod that displays your real-world time directly in the Minecraft HUD.
 
-Features:
+✨ Features:
 ==========
 ● Shows your local time in-game
 
@@ -25,3 +25,12 @@ Features:
  
  ● Place the .jar inside your mods folder:
   ".minecraft/mods/"
+
+💡Roadmap
+===========
+
+● Customizable HUD position
+
+● Custom color selector
+
+● More options for customizing in the settings menu
