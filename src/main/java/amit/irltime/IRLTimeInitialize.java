@@ -65,14 +65,14 @@ public class IRLTimeInitialize {
         if(!CONFIG.showSeconds){
             localTime=intHour+":";
             localTime+=LocalTime.now().format(TIME_FORMATTER_MINUTE);
-            text ="Local Time: " + localTime + " " + AMorPM(intHour);
+            text ="Local Time: " + localTime + " " + AMorPM(LocalTime.now().getHour());
             ConfigurePlacement(text);
         }
         else {
             localTime=intHour+":";
             localTime+=LocalTime.now().format(TIME_FORMATTER_MINUTE)+":";
             localTime+=LocalTime.now().format(TIME_FORMATTER_SECOND);
-            text ="Local Time: " + localTime + " " + AMorPM(intHour);
+            text ="Local Time: " + localTime + " " + AMorPM(LocalTime.now().getHour());
             ConfigurePlacement(text);
         }
 
