@@ -46,11 +46,10 @@ dependencies {
 
     modImplementation "com.terraformersmc:modmenu:13.0.3"
 
-    modApi "me.shedaniel.cloth:cloth-config-fabric:17.0.142"
-    include "me.shedaniel.cloth:cloth-config-fabric:17.0.142"
+    modApi "me.shedaniel.cloth:cloth-config-fabric:17.0.144"
+    include "me.shedaniel.cloth:cloth-config-fabric:17.0.144"
     // Text Placeholder API – required by Mod Menu 13.x, works on 1.21.x
-    modImplementation "maven.modrinth:placeholder-api:2.5.1+1.21.3"
-    include "maven.modrinth:placeholder-api:2.5.1+1.21.3"
+
 }
 
 processResources {

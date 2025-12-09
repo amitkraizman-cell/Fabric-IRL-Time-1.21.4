@@ -107,11 +107,46 @@ public class IRLTimeInitialize {
     }
 
     private static void ConfigurePlacement(String textToDraw){
-        screenWidth = client.getWindow().getScaledWidth();
+        int screenWidth = client.getWindow().getScaledWidth();
+        int screenHeight = client.getWindow().getScaledHeight();
+
         int textWidth = MinecraftClient.getInstance().textRenderer.getWidth(textToDraw);
+        int textHeight = 10;  // approximate height
+
         int margin = 10;
-        x = screenWidth - textWidth - margin;
-        y = margin;
+
+        IRLTimeConfig.Corner corner = CONFIG.corner;
+        if (corner == null) {
+            corner = IRLTimeConfig.Corner.TOP_RIGHT;
+        }
+
+        switch (corner) {
+            case TOP_LEFT:
+                x = margin;
+                y = margin;
+                break;
+
+            case TOP_RIGHT:
+                x = screenWidth - textWidth - margin;
+                y = margin;
+                break;
+
+            case BOTTOM_LEFT:
+                x = margin;
+                y = screenHeight - textHeight - margin;
+                break;
+
+            case BOTTOM_RIGHT:
+                x = screenWidth - textWidth - margin;
+                y = screenHeight - textHeight - margin;
+                break;
+
+            default:
+                // fallback in case config is invalid
+                x = screenWidth - textWidth - margin;
+                y = margin;
+                break;
+        }
     }
 
     //returns "AP" or "PM" accordingly
@@ -132,13 +167,14 @@ public class IRLTimeInitialize {
     }
     //if there's an effect on the player, time moves sideways
     private static void moveText(Collection<StatusEffectInstance> effects) {
+        if (CONFIG.corner == null || CONFIG.corner!=IRLTimeConfig.Corner.TOP_RIGHT) return;
+
         boolean hasTopRightEffects = effects.stream().anyMatch(effect ->
                 effect.shouldShowIcon() && !isBottomHudEffect(effect)
         );
 
         if (hasTopRightEffects) {
-            int offset = 20;
-            x -= offset;
+            x -= 20;
         }
     }
     //some effects don't appear in the top right

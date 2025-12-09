@@ -16,15 +16,26 @@ public class ConfigManager {
 
     public static IRLTimeConfig loadConfig() {
         if (!CONFIG_FILE.exists()) {
-            saveConfig(new IRLTimeConfig()); // create default file
-            return new IRLTimeConfig();
+            IRLTimeConfig cfg = new IRLTimeConfig();
+            saveConfig(cfg); // create default file
+            return cfg;
         }
 
         try (FileReader reader = new FileReader(CONFIG_FILE)) {
-            return GSON.fromJson(reader, IRLTimeConfig.class);
+            IRLTimeConfig cfg = GSON.fromJson(reader, IRLTimeConfig.class);
+
+            // safety: if old config had string / invalid value, enum might be null
+            if (cfg.corner == null) {
+                cfg.corner = IRLTimeConfig.Corner.TOP_RIGHT;
+            }
+
+            return cfg;
         } catch (Exception e) {
             e.printStackTrace();
-            return new IRLTimeConfig();
+            // fall back to default config
+            IRLTimeConfig cfg = new IRLTimeConfig();
+            saveConfig(cfg);
+            return cfg;
         }
     }
 

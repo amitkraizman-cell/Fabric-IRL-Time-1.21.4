@@ -6,6 +6,7 @@ import amit.irltime.IRLTimeInitialize;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+import me.shedaniel.clothconfig2.api.Tooltip;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -14,6 +15,8 @@ public class IRLTimeConfigScreen {
     public static Screen create(Screen parent) {
 
         IRLTimeConfig cfg = IRLTimeInitialize.CONFIG;
+        IRLTimeConfig.Corner currentCorner =
+                (cfg.corner != null ? cfg.corner : IRLTimeConfig.Corner.TOP_RIGHT);
 
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
@@ -50,6 +53,18 @@ public class IRLTimeConfigScreen {
                 .setSaveConsumer(newValue -> cfg.showSeconds = newValue)
                 .build()
         );
+        //change position
+        general.addEntry(entryBuilder
+                .startEnumSelector(
+                        Text.literal("Corner"),
+                        IRLTimeConfig.Corner.class,
+                        currentCorner
+                )
+                .setDefaultValue(IRLTimeConfig.Corner.TOP_RIGHT)
+                .setSaveConsumer(newValue -> cfg.corner = newValue)
+                .build()
+        );
+
 
         return builder.build();
     }
