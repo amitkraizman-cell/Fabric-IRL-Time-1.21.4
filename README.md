@@ -27,10 +27,9 @@ A lightweight Fabric mod that displays your real-world time directly in the Mine
 
  ● Install Mod Menu
  
- ● Download The latest stable version of IRL-Time here,
-  or from:
+ ● Download The **latest** **stable** version of IRL-Time from:
   
-  Modrinth: https://modrinth.com/mod/irl_time
+  **Modrinth**: https://modrinth.com/mod/irl_time
  
  ● Place the .jar inside your mods folder:
   ".minecraft/mods/"
